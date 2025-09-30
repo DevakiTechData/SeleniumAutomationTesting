@@ -1,0 +1,110 @@
+package day28;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.WebElement;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+public class XpathAxesDemo2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver = new ChromeDriver();
+		
+		
+		driver.get("https://testautomationpractice.blogspot.com/");
+		driver.manage().window().maximize();
+		
+		
+		//--------------identification of unknown elements using xpath axes-----------------------
+		
+		
+		//self node identification............................................
+		
+		WebElement selfElement = driver.findElement(By.xpath("//input[@id='input1']/self::input"));
+		
+		selfElement.getAttribute("name");
+		
+		System.out.println("Self Element Name Attribute: " + selfElement.getAttribute("name"));
+		
+		
+		
+		//parent.........................................................................................................
+		
+		WebElement parentElement = driver.findElement(By.xpath("//input[@id='input1']/parent::div"));
+		
+		parentElement.getAttribute("id");
+		
+		System.out.println("Parent Element ID Attribute: " + parentElement.getAttribute("id"));
+		
+		
+		
+		//child............................................................................................................
+		
+		//div[@id='section1']/child::p
+		
+		//div[@id='section1']/child::*
+		//div[@id='section1']/child::input
+		
+		//if we have 2 input boxes under one parent
+		
+		//index usage
+		
+		//div[@id='section1']/child::input[1]
+		//div[@id='section1']/child::input[2]
+		
+		WebElement childElement = driver.findElement(By.xpath("//div[@id='section1']/child::p"));
+		
+		childElement.getText();
+		
+		System.out.println("Child Element Text: " + childElement.getText());
+		
+		
+		//ancestor............................................................................................................
+		
+		//input[@id='input1']/ancestor::div[@class='container']
+		
+		WebElement ancestorElement = driver.findElement(By.xpath("//input[@id='input1']/ancestor::div[@class='container']"));
+		
+		ancestorElement.getAttribute("class");
+		
+		System.out.println("Ancestor Element Class Attribute: " + ancestorElement.getAttribute("class"));
+		
+		
+		//descendant...........................................................................................................
+		
+		//div[@class='container']/descendant::h4[1]
+		
+		WebElement descendantElement = driver.findElement(By.xpath("//div[@class='container']/descendant::h4[text()='Section 1']"));
+		
+		descendantElement.getText();
+		
+		System.out.println("Descendant Element Text: " + descendantElement.getText());
+		
+		
+		//following............................................................................................................
+		//div[@id='section1']/following-sibling::div[@id='section2']
+		
+		WebElement followingElement = driver.findElement(By.xpath("//div[@id='section1']/following-sibling::div[@id='section2']"));
+		
+		followingElement.getAttribute("id");
+		
+		System.out.println("Following Element Class Attribute: " + followingElement.getAttribute("id"));
+		
+		//preceding............................................................................................................
+		
+		//div[@id='section2']/preceding-sibling::div[@id='section1']
+		
+		WebElement precedingElement = driver.findElement(By.xpath("//div[@id='section2']/preceding-sibling::div[@id='section1']"));
+		
+		precedingElement.getAttribute("id");
+		
+		System.out.println("Preceding Element Class Attribute: " + precedingElement.getAttribute("id"));
+		
+
+	}
+
+}
