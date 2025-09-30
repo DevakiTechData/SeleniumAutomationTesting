@@ -1,0 +1,101 @@
+package day28;
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.locators.RelativeLocator;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+
+
+public class RelativeLocators2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://automationbookstore.dev/");
+		driver.manage().window().maximize();
+		
+		//identification of one element using another element
+		
+		//li[@id='pid6']---reference element
+		
+		WebElement referenceElement = driver.findElement(By.xpath("//li[@id='pid6']"));
+		
+		referenceElement.getText();
+		
+		System.out.println("Details of the ReferenceBook: " + referenceElement.getText());
+		
+		
+		
+		
+		//--------------identification of unknown elements using relative locators-----------------------	
+		
+		//1. above()
+		
+		WebElement aboveElement = driver.findElement(RelativeLocator.with(By.tagName("li")).above(referenceElement));
+		
+		//RelativeLocator----class
+		//with()----static method
+		//By.tagName("li")----locator of the unknown element
+		//below(referenceElement)----position of the unknown element with respect to the reference element
+		
+		aboveElement.getText();
+		
+		System.out.println("Details of the BelowBook: " + aboveElement.getText());
+		
+		
+//		//2. below()
+//		
+//		WebElement referenceElement2 = driver.findElement(By.xpath("//li[@id='pid2']"));
+//		
+//		WebElement belowElement = driver.findElement(RelativeLocator.with(By.tagName("li")).above(referenceElement2));
+//		
+//		belowElement.getText();
+//		
+//		System.out.println("Details of the BelowBook2: " + belowElement.getText());
+		
+		
+		
+		//3. toLeftOf()
+		
+		WebElement leftElement = driver.findElement(RelativeLocator.with(By.tagName("li")).above(referenceElement));
+		
+		leftElement.getText();
+		
+		System.out.println("Details of the LeftBook: " + leftElement.getText());
+		
+		//4. toRightOf()
+		
+		WebElement rightElement = driver.findElement(RelativeLocator.with(By.tagName("li")).toRightOf(referenceElement));
+		
+		rightElement.getText();
+		
+		System.out.println("Details of the RightBook: " + rightElement.getText());
+		
+		//5. near()
+		
+		WebElement nearElement = driver.findElement(RelativeLocator.with(By.tagName("li")).near(referenceElement));
+		
+		nearElement.getText();
+		
+		System.out.println("Details of the NearBook: " + nearElement.getText());
+		
+//		WebElement nearElement = driver.findElement(RelativeLocator.with(By.id("pid8")).near(referenceElement));
+//		
+//		nearElement.getText();
+//		
+//		System.out.println("Details of the NearBook2: " + nearElement.getText());
+		
+		
+		
+		
+		
+		driver.quit();
+
+	}
+
+}
